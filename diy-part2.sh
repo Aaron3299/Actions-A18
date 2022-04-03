@@ -6,7 +6,7 @@
 sed -i 's/192.168.1.1/192.168.2.2/g' package/base-files/files/bin/config_generate
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
 sed '/firstchild(),/d' package/feeds/luci/luci-app-ipsec-vpnd/luasrc/controller/ipsec-server.lua
-sed -i 's/services/vpn/g’ package/feeds/luci/luci-app-ipsec-vpnd/luasrc/controller/ipsec-server.lua
+sed -i 's/vpn/services/g’ package/feeds/luci/luci-app-ipsec-vpnd/luasrc/controller/ipsec-server.lua
 #删除部分插件
 rm -rf package/lean/luci-app-netdata
 rm -rf package/lean/luci-theme-argon
