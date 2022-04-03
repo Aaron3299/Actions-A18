@@ -12,11 +12,11 @@ echo 'src-git helloworld https://github.com/fw876/helloworld' >> feeds.conf.defa
 #git clone https://github.com/liuran001/openwrt-packages package
 #SSR
 #git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
-#smartdns
-#git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
 #adblock plus
 #git clone https://github.com/small-5/luci-app-adblock-plus package/luci-app-adblock-plus
 #网络监控中文版
-git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
+#git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
 #filebrowser
-git clone https://github.com/xiaozhuai/luci-app-filebrowser package/luci-app-filebrowser
+#git clone https://github.com/xiaozhuai/luci-app-filebrowser package/luci-app-filebrowser
+#adguardhome
+git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
