@@ -19,4 +19,4 @@ echo 'src-git helloworld https://github.com/fw876/helloworld' >> feeds.conf.defa
 #filebrowser
 #git clone https://github.com/xiaozhuai/luci-app-filebrowser package/luci-app-filebrowser
 #adguardhome
-git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
+#git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
