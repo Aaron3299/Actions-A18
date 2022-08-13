@@ -1,13 +1,4 @@
 #
-# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
-#
-# This is free software, licensed under the MIT License.
-# See /LICENSE for more information.
-#
-# https://github.com/P3TERX/Actions-OpenWrt
-# Description: Build OpenWrt using GitHub Actions
-#
-
 name: 编译 A19
 
 on:
@@ -116,15 +107,21 @@ jobs:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
-    - name: 整理编译文件（Organize files）
+    - name: 整编译文件（Organize files）
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
+        rm -rf config.buildinfo
+        rm -rf feeds.buildinfo
+        rm -rf openwrt-ipq60xx-generic-device-cmiot-ax18.manifest
+        rm -rf openwrt-ipq60xx-generic-cmiot_ax18-initramfs-fit-uImage.itb
+        rm -rf sha256sums
+        rm -rf version.buildinfo
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
-    
+
     - name: 上传固件
       uses: actions/upload-artifact@main
       if: steps.organize.conclusion == 'success' && !cancelled()
