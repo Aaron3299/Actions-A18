@@ -11,5 +11,5 @@
 #git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
 #git clone https://github.com/sbwml/luci-app-alist package/luci-app-alist
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
-#git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
-#svn export https://github.com/kiddin9/openwrt-packages/trunk/luci-app-passwall package/luci-app-passwall
+git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
+git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
