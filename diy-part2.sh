@@ -14,4 +14,4 @@ sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 #rm -rf package/lean/luci-app-uugamebooster
 #rm -rf package/lean/luci-app-usb-printer
 # 修改插件名字（修改名字后不知道会不会对插件功能有影响，自己多测试）
-#sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
+sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
