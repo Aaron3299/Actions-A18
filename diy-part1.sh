@@ -10,6 +10,6 @@
 #git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
 #git clone https://github.com/sbwml/luci-app-alist package/luci-app-alist
 #git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
-svn export https://github.com/kiddin9/openwrt-packages/trunk/adguardhome package/diy/adguardhome
+#svn export https://github.com/kiddin9/openwrt-packages/trunk/adguardhome package/diy/adguardhome
 svn export https://github.com/kiddin9/openwrt-packages/trunk/luci-app-adguardhome package/diy/luci-app-adguardhome
 svn export https://github.com/kiddin9/openwrt-packages/trunk/luci-app-dnsfilter package/diy/luci-app-dnsfilter
