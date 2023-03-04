@@ -1,5 +1,5 @@
 #
-name: 编译 ZN-M2
+name: 编译 ZN-M2-No-DDNS
 
 on:
   repository_dispatch:
