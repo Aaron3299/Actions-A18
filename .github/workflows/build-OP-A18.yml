@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: 编译 A18-DDNS.config
+name: 编译 A18-DDNS
 
 on:
   repository_dispatch:
