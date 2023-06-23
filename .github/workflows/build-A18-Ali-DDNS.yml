@@ -48,12 +48,6 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-    - name: 读取缓存Cache
-      uses: stupidloud/cachewrtbuild@main
-      with:
-        ccache: 'true'
-        prefix: ${{ github.workspace }}/openwrt
-
     - name:  加载补丁和自定义设置（DIY1）
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
@@ -113,7 +107,7 @@ jobs:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
-    - name: 整理编译文件(Organize files)
+    - name: 整理编译文件（Organize files）
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
@@ -121,6 +115,8 @@ jobs:
         rm -rf packages
         rm -rf config.buildinfo
         rm -rf feeds.buildinfo
+        rm -rf openwrt-ipq60xx-generic-device-cmiot-ax18.manifest
+        rm -rf openwrt-ipq60xx-generic-cmiot_ax18-initramfs-fit-uImage.itb
         rm -rf sha256sums
         rm -rf version.buildinfo
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
@@ -128,14 +124,14 @@ jobs:
 
     - name: 上传固件
       uses: actions/upload-artifact@main
-      if: steps.organize.outputs.status == 'success' && !cancelled()
+      if: steps.organize.conclusion == 'success' && !cancelled()
       with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
+      if: steps.tag.conclusion == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -143,13 +139,13 @@ jobs:
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
 
-    - name: Delete workflow runs
+    - name: 删除历史工作流(Delete workflow runs)
       uses: GitRML/delete-workflow-runs@main
       with:
         retain_days: 1
         keep_minimum_runs: 3
 
-    - name: Remove old Releases
+    - name: 删除历史记录(Remove old Releases)
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
