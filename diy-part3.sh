@@ -22,7 +22,8 @@ sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' package/feeds/luci/luci-app
 # 替换golang版本为1.22
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
-
+#修改版本信息
+sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='A18 (build time: $(date +%Y%m%d))'/g"  package/base-files/files/etc/openwrt_release
 # ttyd免登陆
 sed -i -r 's#/bin/login#/bin/login -f root#g' feeds/packages/utils/ttyd/files/ttyd.config
 
