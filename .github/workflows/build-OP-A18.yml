@@ -20,16 +20,16 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/Glunefish/ipq6000.git
+  REPO_URL: https://github.com/openwrt-fork/sdf8057-ipq6000.git
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: A18.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   DIY_P3_SH: diy-part3.sh
-  UPLOAD_BIN_DIR: false
+  UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
-  UPLOAD_RELEASE: true
+  UPLOAD_RELEASE: false
   TZ: Asia/Shanghai
 
 jobs:
@@ -157,26 +157,6 @@ jobs:
       with:
         name: ipq6000${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
-
-    - name: Generate release tag
-      id: tag
-      run: |
-        echo "release_tag=ZN-M2-2023_$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
-        touch release.txt
-        echo "ZN-M2-2023 firmware" >> release.txt
-        echo "status=success" >> $GITHUB_OUTPUT
-
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        prerelease: true
-        body_path: release.txt
-        files: |
-         ${{ env.FIRMWARE }}/*.ubi
-         ${{ env.FIRMWARE }}/*.bin
 
     - name: Delete releases and workflows runs
       uses: ophub/delete-releases-workflows@main
