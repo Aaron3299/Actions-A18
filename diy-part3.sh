@@ -32,10 +32,6 @@ rm -rf package/feeds/packages/smartdns
 #rm -rf package/lean/luci-app-uugamebooster
 #rm -rf package/lean/luci-app-usb-printer
 
-# 替换smartdns
-git clone --depth=1 https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
-git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
-
 # 替换golang版本为1.24
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
