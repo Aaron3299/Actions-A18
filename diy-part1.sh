@@ -8,3 +8,5 @@
 #echo 'src-git small https://github.com/kenzok8/small' >> feeds.conf.default
 #echo 'src-git https://github.com/kenzok8/openwrt-packages' >> feeds.conf.default
 #echo 'src-git custom https://github.com/xiaorouji/openwrt-passwall.git;packages' >>feeds.conf.default
+#src-git eqosplus https://github.com/sirpdboy/luci-app-eqosplus
+#src-git taskplan https://github.com/sirpdboy/luci-app-taskplan
