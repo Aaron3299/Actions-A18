@@ -22,20 +22,27 @@ sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
 
 #修改版本信息
-sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='A18 (build time: $(date +%Y%m%d))'/g"  package/base-files/files/etc/openwrt_release
+# sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='A18 (build time: $(date +%Y%m%d))'/g"  package/base-files/files/etc/openwrt_release
+
+#删除部分插件
+rm -rf package/feeds/luci/luci-app-smartdns
+rm -rf package/feeds/packages/smartdns
+#rm -rf package/lean/luci-app-netdata
+#rm -rf package/lean/luci-theme-argon
+#rm -rf package/lean/luci-app-uugamebooster
+#rm -rf package/lean/luci-app-usb-printer
+
+# 替换smartdns
+git clone --depth=1 -b lede https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
+git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
 
 # 替换golang版本为1.24
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # ttyd免登陆
-sed -i -r 's#/bin/login#/bin/login -f root#g' feeds/packages/utils/ttyd/files/ttyd.config
+#sed -i -r 's#/bin/login#/bin/login -f root#g' feeds/packages/utils/ttyd/files/ttyd.config
 
 # design修改proxy链接
 sed -i -r "s#navbar_proxy = 'openclash'#navbar_proxy = 'passwall'#g" feeds/luci/themes/luci-theme-design/luasrc/view/themes/design/header.htm
 
-#删除部分插件
-rm -rf package/lean/luci-app-netdata
-rm -rf package/lean/luci-theme-argon
-rm -rf package/lean/luci-app-uugamebooster
-rm -rf package/lean/luci-app-usb-printer
